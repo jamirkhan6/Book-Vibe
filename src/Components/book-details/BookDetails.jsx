@@ -21,7 +21,7 @@ const BookDetails = () => {
   return (
     <>
       {selectedBook ? (
-        <div className="grid grid-cols-2 gap-12 mx-32 mt-6">
+        <div className="grid grid-cols-2 gap-12 mt-6">
           <div className="p-20 flex items-center justify-center rounded-3xl bg-[#1313130D]">
             <img src={selectedBook.image} alt={selectedBook.bookName} />
           </div>

@@ -79,7 +79,7 @@ const Book = () => {
     <>
       <SuggestBook />
       <h1 className="text-[40px] font-bold text-[#131313] text-center mt-12">Book</h1>
-      <div className="grid grid-cols-4 gap-6 mx-32 mt-4">{bookList}</div>
+      <div className="grid grid-cols-4 gap-6 mt-4">{bookList}</div>
     </>
   );
 }
