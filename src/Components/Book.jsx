@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import axios from "axios";
+
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faStar, faStarHalfAlt } from "@fortawesome/free-solid-svg-icons";
@@ -10,12 +12,26 @@ const Book = () => {
 
   const [books, setBooks] = useState([]);
 
+  // useEffect(() => {
+  //   fetch('/booksData.json')
+  //   .then(res => res.json())
+  //   .then(data => setBooks(data))
+  //   .catch(error => console.error("Error fetching data:", error));
+  // }, []);
+
+
   useEffect(() => {
-    fetch('/booksData.json')
-    .then(res => res.json())
-    .then(data => setBooks(data))
-    .catch(error => console.error("Error fetching data:", error));
+    async function fetchBooks() {
+      try {
+        const response = await axios.get("/booksData.json");
+        setBooks(response.data);
+      } catch (error) {
+        console.error("Error fetching books:", error);
+      }
+    }
+    fetchBooks();
   }, []);
+
 
 
   const bookList = books.map(
