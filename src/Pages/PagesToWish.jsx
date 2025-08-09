@@ -7,16 +7,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { UserContext } from "../user context/UserContext";
 
-const PagesToRead = () => {
-  const { readBooks } = useContext(UserContext);
+const PagesToWish = () => {
+  const { wishlistBooks } = useContext(UserContext);
 
-  if (!readBooks || readBooks.length === 0) {
+  if (!wishlistBooks || wishlistBooks.length === 0) {
     return <p className="text-center p-6">No books read yet.</p>;
   }
 
   return (
     <>
-      {readBooks.map((book) => (
+      {wishlistBooks.map((book) => (
         <div
           key={book.bookId}
           className="flex gap-8 w-full p-6 rounded-3xl border-2 border-[#13131326] mb-6"
@@ -91,4 +91,4 @@ const PagesToRead = () => {
   );
 };
 
-export default PagesToRead;
+export default PagesToWish;

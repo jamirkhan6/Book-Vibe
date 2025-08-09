@@ -32,7 +32,7 @@ const Book = () => {
       publisher,
       yearOfPublishing,
     }) => (
-      <Link to={`/book/${bookId}`}>
+      <Link to={`/book/${bookId}`} key={bookId}>
         <div
           className="p-4 border-2 border-[#13131326] rounded-3xl"
           key={bookId}

@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useEffect, useState, useContext } from 'react'
+import {  useNavigate, useParams } from 'react-router-dom'
+import { UserContext } from '../../user context/UserContext';
+
 
 const BookDetails = () => {
 
     const {id} = useParams();
+    const navigate = useNavigate();
     
     const [selectedBook, setselectedBook] = useState(null);
+    const { addToRead, addToWishlist, activeTag, setActiveTag } = useContext(UserContext);
+    
 
     useEffect(() => {
       fetch('/booksData.json')
@@ -16,6 +21,15 @@ const BookDetails = () => {
         })
         .catch((error) => console.error("Error fetching data:", error));
     }, [id]);
+
+    const handleReadBook = () => {
+      addToRead(selectedBook);
+      navigate("/listedbook")
+    }
+    const handleWishBook = () => {
+      addToWishlist(selectedBook);
+      navigate("/listedbook")
+    }
 
 
   return (
@@ -84,10 +98,16 @@ const BookDetails = () => {
               </div>
             </div>
             <div className="flex gap-4">
-              <button className="px-5 py-3 rounded-md text-md font-semibold border-2 border-[#1313134D]">
+              <button
+                className= "px-5 py-3 rounded-md text-md font-semibold border-2 border-[#1313134D]"
+                onClick={() => {handleReadBook(); setActiveTag("read")}}
+              >
                 Read
               </button>
-              <button className="px-5 py-3 rounded-md text-md font-semibold text-white bg-[#50B1C9]">
+              <button
+                className= "px-5 py-3 rounded-md text-md font-semibold text-white bg-[#50B1C9]"
+                onClick={() => {handleWishBook(); setActiveTag("wish")}}
+              >
                 Wishlist
               </button>
             </div>
