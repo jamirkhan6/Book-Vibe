@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import {  useNavigate, useParams } from 'react-router-dom'
 import { UserContext } from '../../user context/UserContext';
+import axios from 'axios';
 
 
 const BookDetails = () => {
@@ -12,12 +13,22 @@ const BookDetails = () => {
     const { addToRead, addToWishlist, activeTag, setActiveTag } = useContext(UserContext);
     
 
+    // useEffect(() => {
+    //   fetch('/booksData.json')
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //     const matces = data.find((book) => book.bookId.toString() === id);
+    //     setselectedBook(matces)
+    //     })
+    //     .catch((error) => console.error("Error fetching data:", error));
+    // }, [id]);
+
     useEffect(() => {
-      fetch('/booksData.json')
-        .then((res) => res.json())
-        .then((data) => {
-        const matces = data.find((book) => book.bookId.toString() === id);
-        setselectedBook(matces)
+      axios
+        .get("/booksData.json")
+        .then((res) => {
+          const match = res.data.find((book) => book.bookId.toString() === id);
+          setselectedBook(match);
         })
         .catch((error) => console.error("Error fetching data:", error));
     }, [id]);

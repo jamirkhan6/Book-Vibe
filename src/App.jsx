@@ -1,18 +1,20 @@
 import React from "react";
-import { Route, Navigate, createBrowserRouter, createRoutesFromElements, RouterProvider } from "react-router-dom";
-
+import {
+  Route,
+  createHashRouter,
+  createRoutesFromElements,
+  RouterProvider,
+} from "react-router-dom";
 
 import "./App.css";
-import Navigation from "./Components/Navigation";
 import ListedBook from "./Pages/ListedBook";
 import PagesToRead from "./Pages/PagesToRead";
-import BookDetails from ".//Components/book-details/BookDetails";
+import BookDetails from "./Components/book-details/BookDetails";
 import Book from "./Components/Book";
 import RootLayout from "./Components/leyout/RootLayout";
 
 function App() {
-
-  const router = createBrowserRouter(
+  const router = createHashRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
         <Route index element={<Book />} />
@@ -23,9 +25,7 @@ function App() {
     )
   );
 
-  return (
-    <RouterProvider router={router} />
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
